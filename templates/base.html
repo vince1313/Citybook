@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block title %}
+        <title>城市名</title>
+    {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static',filename='bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static',filename='business-frontpage.css')}}" rel="stylesheet">
+
+  </head>
+  
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{url_for('index')}}">返回</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="{{url_for('index')}}">
+                主页
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{{ url_for('register')}}">注册</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">登陆</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">写下你的城记</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header with Background Image -->
+
+    {% block headerimage %}
+        <header class="business-header" style="background-image:url('/static/citybook.jpg')" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <h1 class="display-3 text-center text-white mt-4"></h1>
+            </div>
+            </div>
+        </div>
+        </header>
+    {% endblock %}
+
+    <!-- Page Content -->
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          {% block cityname %}
+            <h2 class="mt-4">城市名</h2>
+          {% endblock %}
+          <p>
+            <a class="btn btn-primary btn-lg" href="#">选出你的城市之歌 &raquo;</a>
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <h2 class="mt-4">城市之歌</h2>
+            {% block citysong %}
+                <strong>---城市之歌（票数 votes）</strong>
+            {% endblock %}
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-sm-4 my-4">
+          <div class="card">
+            <img class="card-img-top" src="{{url_for('static',filename='citybook.jpg')}}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">城记1</h4>
+              <p class="card-text">副标题</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">浏览全文</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 my-4">
+          <div class="card">
+            <img class="card-img-top" src="{{url_for('static',filename='citybook.jpg')}}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">城记2</h4>
+              <p class="card-text">副标题</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">浏览全文</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 my-4">
+          <div class="card">
+            <img class="card-img-top" src="{{url_for('static',filename='citybook.jpg')}}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">城记3</h4>
+              <p class="card-text">副标题</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">浏览全文</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Vincent.Zhu 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='bootstrap.bundle.min.js')}}"></script>
+
+  </body>
+
+</html>
