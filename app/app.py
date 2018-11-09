@@ -26,9 +26,7 @@ def citybook():
 def register():
     return render_template('register.html')
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
+
 
 
 
