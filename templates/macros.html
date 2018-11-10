@@ -1,0 +1,24 @@
+{% macro render_field(field) %}
+    <div class="form-group">                                        
+        <label class="sr-only" for="{{ field.name}}">{{ field.label.text}}</label>
+        {{ field(class_='form-first-name form-control', **kwargs)|safe }}
+    </div>
+    <ul>
+        {% for error in field.errors %}
+            <li style="color:red;">{{ error }}</li>
+        {% endfor %}
+        </ul>
+{% endmacro %}
+
+
+{% macro login_field(field) %}
+    <div class="form-group">
+        <label class="sr-only" for="{{field.name}}">{{field.label.text}}</label>
+        {{ field(class_='form-email form-control', **kwargs)|safe }}
+        <ul>
+            {% for error in field.errors %}
+                <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

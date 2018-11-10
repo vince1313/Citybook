@@ -1,0 +1,49 @@
+{% extends 'index.html'%}
+{% from 'macros.html' import render_field %}
+{% block content %}
+	<style>
+        body{
+            background-image: url('/static/citybook.jpg')
+        }
+		</style>
+	
+	<body>
+			<div class="top-content">
+				
+				<div class="inner-bg">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-7 text">
+							</div>
+							<div class="col-sm-5 form-box">
+								<div class="form-top">
+									<div class="form-top-left">
+										<h3 style="color:ivory"> 注册</h3>
+										<p style="color:ivory">加入城记</p>
+									</div>
+									<div class="form-top-right">
+										<i class="fa fa-pencil"></i>
+									</div>
+									<div class="form-top-divider"></div>
+								</div>
+								<div class="form-bottom">
+									<form role="form" action="/register" method="POST" class="registration-form">
+                                        {{ form.csrf_token }}
+                                        {{ render_field(form.nickname,placeholder=form.nickname.label.text)}}
+                                        {{ render_field(form.password,placeholder=form.password.label.text)}}
+                                        {{ render_field(form.password_confirm,placeholder=form.password_confirm.label.text)}}
+                                        {{render_field(form.email,placeholder=form.email.label.text)}}
+
+										<button type="submit" class="btn">注册</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</body>
+		{% block footer %}
+		{% endblock footer %}
+{% endblock content %}

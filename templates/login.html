@@ -1,0 +1,41 @@
+{% extends 'register.html'%}
+{% from 'macros.html' import login_field %}
+{% block content %}
+<style>
+	body{
+		background-image: url('/static/citybook.jpg')
+	}
+	</style>
+<body>
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7 text">
+                        </div>
+                        <div class="col-sm-5 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3 style="color:ivory"> 城记</h3>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-pencil"></i>
+                        		</div>
+                        		<div class="form-top-divider"></div>
+                            </div>
+                            <div class="form-bottom">
+								<form role="form" action="/login" method="post" class="registration-form">
+									{{ form.csrf_token }}
+									{{ login_field(form.email )}}
+									{{ login_field(form.password)}}
+			                        <button type="submit" class="btn">登陆</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+		</div>
+	</body> 
+{% endblock content %}
