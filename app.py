@@ -1,12 +1,17 @@
-from flask import Flask,redirect,url_for,render_template,request
+from flask import Flask,redirect,url_for,render_template,request,session
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import StringField,PasswordField
-from wtforms.validators import InputRequired,length
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms.validators import InputRequired,length,DataRequired
 from flask_wtf import FlaskForm
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY']="This is a secret key"
-app.config['SQLALCHEMY_DATABASE_URI']="sqlite:////Users/vincent.zhu/Desktop/城记/user.db"
+app.config['SQLALCHEMY_DATABASE_URI']="sqlite:////Users/shendikai/Desktop/citybook-master/user.db"
+app.config['SQLALCHEMY_DATABASE_URI']="sqlite:////Users/shendikai/Desktop/citybook-master/articles.db"
+app.config['SQLALCHEMY_DATABASE_URI']="sqlite:////Users/shendikai/Desktop/citybook-master/images.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -31,7 +36,6 @@ class citybookdb(db.Model):
     nickname = db.Column(db.String())
     password = db.Column(db.String())
     email = db.Column(db.String())
-
 # 主页
 @app.route('/')
 def index():
@@ -67,6 +71,96 @@ def login():
                 return "登陆成功"
         return "您还没有注册 "
     return render_template('login.html',form = form)
+
+
+
+
+
+
+
+#下面是我的部分
+
+
+
+
+#图片数据库
+class imagedb(db.Model):
+    __tablename__ = 'images'
+    id = db.Column(db.Integer,primary_key=True)
+    imageFiles = db.Column()
+    db.create_all()
+    def __repr__(self):
+        return '<imagedb %r>'%self.name
+
+#文章数据库
+class articlesdb(db.Model):
+    __tablename__ = 'articles'
+    id = db.Column(db.Integer, primary_key = True)
+    article = db.Column(db.String(800), unique = True)
+    db.create_all()
+    def __repr__(self):
+        return '<articlesdb %r>'%self.name
+
+
+#文章提交表
+class editForm(FlaskForm):
+    user = StringField(u'城记1',validators=[DataRequired(message=u'城记不可为空')])
+    submitButton = SubmitField(u'提交文章')
+
+#图片提交表
+class AttachForm(FlaskForm):
+    attach = FileField('请上传',validators = [FileAllowed(attach,'请上传为图片格式的文件')])
+
+
+#异常抛出
+@app.errorhandler(404)
+def page_not_found(e):
+    render_template('404.html'),404
+    
+@app.errorhandler(500)
+def internal_server_error(e):
+    render_template('500.html'),500
+
+
+#文章界面
+@app.route('/xiewenzhang',methods=['GET','POST'])
+def xiewenzhang():
+    form = editForm()
+    article = None
+    if request.POST and form.validate_on_submit():
+        article = articlesdb(form.article.data)  
+        db.session.add(article)
+        db.session.commit()
+        form.article.data = ''
+        return redirect(url_for('xiewenzhang'))
+    pictureForm = AttachForm()
+    thePic = None
+    if pictureForm.validate_on_submit():
+        thePic = imagedb(pictureForm.photo.data)
+        db.session.add(pictureForm)
+        db.session.commit()
+        pictureForm.thePic.data = None
+        return redirect(url_for('xiewenzhang'))
+    return render_template(xiewenzhang.html,form =form ,pictureForm=pictureForm)
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+    
+    
 
 
 
