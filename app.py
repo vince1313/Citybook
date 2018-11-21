@@ -127,15 +127,13 @@ def internal_server_error(e):
 def xiewenzhang():
     form = editForm()
     article = None
-    if request.POST and form.validate_on_submit():
+    pictureForm = AttachForm()
+    thePic = None
+    if request.POST and form.validate_on_submit() and pictureForm.validate_on_submit():
         article = articlesdb(form.article.data)  
         db.session.add(article)
         db.session.commit()
         form.article.data = ''
-        return redirect(url_for('xiewenzhang'))
-    pictureForm = AttachForm()
-    thePic = None
-    if pictureForm.validate_on_submit():
         thePic = imagedb(pictureForm.photo.data)
         db.session.add(pictureForm)
         db.session.commit()
