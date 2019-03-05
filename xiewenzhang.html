@@ -1,0 +1,65 @@
+
+
+<head>
+    <meta charset="utf-8"/>
+    <title>城记-写下你的故事</title>
+    <style>
+        .title{font-size: 20px;
+               letter-spacing 1px;
+        }
+        .article{
+            font-size: 14px;
+            text-align:left;
+        }
+        a{  color: black;
+            text-decoration: none;}
+        a:hover{
+            color: gray;text-decoration: underline;
+        }
+        .header{color: #0D1856;
+                width：400px；height：40px；
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="static/城记logo小.jpg"/>
+        <form method="POST">
+            <input type="submit" value="发布"/>
+            <select>
+                <option>普通发布</option>
+                <option>匿名发布</option>
+            </select>
+        </form>
+    </div>
+    <div class="main">
+        <div class="picture">
+            <a href="#图片"><img src="static/相机图标.jpg" title="添加图片"/></a>
+        </div>
+        <div class="title">
+            <form method="POST">
+                <title><input type="text" value="请输入标题（最多50个字）" maxlength="50"/><br/></title>
+            </form>
+        </div>
+        <div class="button">
+            <table>
+                <tr>
+                    <td><img src="static/bold.png" title="加粗"/></td>
+                    <td><img src="static/斜体.png" title="斜体"/></td>
+                    <td><img src="static/列表.png" title="添加列表"/></td>
+                    <td><img src="static/文章.png" title="引用文章"/></td>
+                    <td><img src="static/链接.png" title="添加链接"/></td>
+                    <td><img src="static/图片.png" title="添加图片"/></td>
+                    <td><img src="static/更多.png" title="更多"/></td>                    
+                </tr>
+            </table>
+        </div>
+        <div class="article">
+            <form method="POST">
+                <form type="text">
+                    <textarea rows="100" cols="900">写下你的故事</textarea>
+                </form>
+            </form>       
+        </div>
+    </div>
+</body>
